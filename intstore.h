@@ -19,7 +19,7 @@ typedef struct {
 	int *list_val;
 } list;
 
-#define INTSTORE_PROG 0x31234567
+#define INTSTORE_PROG 0x11112341
 #define INTSTORE_VERS 1
 
 #if defined(__STDC__) || defined(__cplusplus)

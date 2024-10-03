@@ -7,7 +7,7 @@
 #include "intstore.h"
 
 /* Default timeout can be changed using clnt_control() */
-static struct timeval TIMEOUT = { 2, 0 };
+static struct timeval TIMEOUT = { 25, 0 };
 
 void *
 append_1(list *argp, CLIENT *clnt)
