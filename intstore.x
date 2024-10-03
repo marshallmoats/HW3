@@ -6,4 +6,4 @@ program INTSTORE_PROG {
         int QUERY(int) = 2;
         void REMOVE(int) = 3;
     } = 1; /* version number = 1 */
-} = 0x11112341; /* program number = 0x31234567 */
+} = 0x11112341;

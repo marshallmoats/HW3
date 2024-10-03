@@ -23,13 +23,11 @@ int main(int argc, char *argv[]) {
   void *result_3;
   int remove_1_arg;
 
-#ifndef DEBUG
   clnt = clnt_create(host, INTSTORE_PROG, INTSTORE_VERS, "udp");
   if (clnt == NULL) {
     clnt_pcreateerror(host);
     exit(1);
   }
-#endif /* DEBUG */
 
   if (strcmp(argv[2], "append") == 0) {
 	int list[8];
