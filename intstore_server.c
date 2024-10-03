@@ -14,6 +14,7 @@ static int capacity = 0;
 void *
 append_1_svc(list *argp, struct svc_req *rqstp)
 {
+	printf("Appending %i elements\n", argp->list_len);
 	static char * result;
 
 	if (length + argp->list_len > capacity) {
