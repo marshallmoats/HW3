@@ -30,39 +30,45 @@ int main(int argc, char *argv[]) {
   }
 
   if (strcmp(argv[2], "append") == 0) {
-	int list[8];
-	if (argc < 11) {
-		printf("usage: %s server_host append <int1> <int2> ... <int8>\n", argv[0]);
-		exit(1);
-	}
-	for (int i = 0; i < 8; i++) {
-		list[i] = atoi(argv[i + 3]);
-	}
-	append_1_arg.list_val = list;
-	append_1_arg.list_len = 8;
+    int list[8];
+    if (argc < 11) {
+      printf("usage: %s server_host append <int1> <int2> ... <int8>\n",
+             argv[0]);
+      clnt_destroy(clnt);
+      exit(1);
+    }
+    for (int i = 0; i < 8; i++) {
+      list[i] = atoi(argv[i + 3]);
+    }
+    append_1_arg.list_val = list;
+    append_1_arg.list_len = 8;
     append_1(&append_1_arg, clnt);
   } else if (strcmp(argv[2], "query") == 0) {
     if (argc < 4) {
-	  printf("usage: %s server_host query <index>\n", argv[0]);
-	  exit(1);
-	}
-	query_1_arg = atoi(argv[3]);
-	int *result = query_1(&query_1_arg, clnt);
-	if (result == NULL) {
-		printf("query_1 failed: index out of bounds\n");
-	} else {
-		printf("query_1 returned %d\n", *result);
-	}
+      printf("usage: %s server_host query <index>\n", argv[0]);
+      clnt_destroy(clnt);
+      exit(1);
+    }
+    query_1_arg = atoi(argv[3]);
+    int *result = query_1(&query_1_arg, clnt);
+    if (result == NULL) {
+      printf("query_1 failed: index out of bounds\n");
+    } else {
+      printf("query_1 returned %d\n", *result);
+    }
   } else if (strcmp(argv[2], "remove") == 0) {
     if (argc < 4) {
-	  printf("usage: %s server_host remove <index>\n", argv[0]);
-	  exit(1);
-	}
-	remove_1_arg = atoi(argv[3]);
-	remove_1(&remove_1_arg, clnt);
+      printf("usage: %s server_host remove <index>\n", argv[0]);
+      clnt_destroy(clnt);
+      exit(1);
+    }
+    remove_1_arg = atoi(argv[3]);
+    remove_1(&remove_1_arg, clnt);
   } else {
     printf("usage: %s server_host command\n", argv[0]);
+    clnt_destroy(clnt);
     exit(1);
   }
+  clnt_destroy(clnt);
   exit(0);
 }
